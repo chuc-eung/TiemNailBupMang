@@ -20,6 +20,7 @@ const itemsFromSnapshot = (snapshot) => Object.entries(snapshot.val() || {})
   .map(([id, item]) => ({ id, ...item }))
   .filter(item => item.active !== false)
   .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+const revealRenderedItems = (container) => container?.querySelectorAll(".reveal").forEach(item => item.classList.add("revealed"));
 
 function imageMarkup(url, alt, fallback) {
   if (!url) return `<div class="image-fallback"><span>${fallback}</span></div>`;
@@ -44,7 +45,7 @@ function renderServices(items) {
       <h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.description)}</p><a href="#booking" class="text-link">Đặt dịch vụ →</a></div>
     </article>`;
   }).join("");
-  grid.querySelectorAll(".reveal").forEach(item => item.classList.add("revealed"));
+  revealRenderedItems(grid);
   document.querySelectorAll(".category-tab").forEach(tab => {
     tab.onclick = () => {
       document.querySelectorAll(".category-tab").forEach(item => item.classList.remove("active"));
@@ -70,6 +71,7 @@ function renderPricing(items) {
     <div class="price-head"><span>${String(index + 1).padStart(2, "0")}</span><h3>${categoryLabels[group.category]}</h3></div>
     <ul>${group.items.map(item => `<li><span>${escapeHtml(item.name)}</span><strong>${formatPrice(item.price)}</strong></li>`).join("")}</ul>
   </article>`).join("");
+  revealRenderedItems(grid);
 }
 
 function renderCombos(items) {
@@ -80,6 +82,7 @@ function renderCombos(items) {
     <span class="combo-number">${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(item.name)}</h3>
     <p>${escapeHtml(item.description)}</p><strong>${formatPrice(item.price)}</strong>
     <button class="btn btn-light" type="button" data-open-booking>Đặt combo</button></article>`).join("");
+  revealRenderedItems(grid);
   grid.querySelectorAll("[data-open-booking]").forEach(button => button.addEventListener("click", () => document.querySelector("[data-open-booking]")?.click()));
 }
 
@@ -88,6 +91,7 @@ function renderGallery(items) {
   if (!grid || !items.length) return;
   grid.innerHTML = items.map((item, index) => `<div class="gallery-item${index === 0 ? " large" : ""} image-placeholder">
     ${imageMarkup(item.imageUrl, item.title, `ẢNH ${String(item.category || "SALON").toUpperCase()}`)}</div>`).join("");
+  revealRenderedItems(grid);
 }
 
 function renderReviews(items) {
@@ -96,6 +100,7 @@ function renderReviews(items) {
   grid.innerHTML = items.map(item => `<article class="review-card reveal"><div class="stars">${"★".repeat(Math.max(0, Math.min(5, Number(item.rating) || 0)))}</div>
     <p>“${escapeHtml(item.content)}”</p><div class="review-author"><span class="avatar">${escapeHtml((item.name || "K").charAt(0).toUpperCase())}</span>
     <div><strong>${escapeHtml(item.name)}</strong><small>Khách hàng</small></div></div></article>`).join("");
+  revealRenderedItems(grid);
 }
 
 function renderSalon(settings) {
