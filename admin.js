@@ -1,7 +1,6 @@
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { ref, onValue, set, update, remove } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
-import { getDownloadURL, ref as storageRef, uploadBytes } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
-import { auth, realtimeDb, storage } from "./firebase-config.js";
+import { auth, realtimeDb } from "./firebase-config.js";
 
 const loginPanel = document.getElementById("loginPanel");
 const dashboard = document.getElementById("dashboard");
@@ -39,14 +38,16 @@ function fieldMarkup(field, item = {}) {
   return `<label>${label}<input type="${type}" name="${key}" value="${escapeHtml(item[key] ?? "")}" ${required ? "required" : ""}></label>`;
 }
 
-async function uploadImage(file, section, itemId) {
+function readImageAsDataUrl(file) {
   if (!file) return "";
   if (!file.type.startsWith("image/")) throw new Error("Chỉ được tải file hình ảnh");
-  if (file.size > 5 * 1024 * 1024) throw new Error("Ảnh không được vượt quá 5MB");
-  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
-  const imageRef = storageRef(storage, `images/${section}/${itemId}-${Date.now()}-${safeName}`);
-  const snapshot = await uploadBytes(imageRef, file);
-  return getDownloadURL(snapshot.ref);
+  if (file.size > 1024 * 1024) throw new Error("Ảnh không được vượt quá 1MB khi lưu trực tiếp vào Realtime Database");
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("Không thể đọc file ảnh"));
+    reader.readAsDataURL(file);
+  });
 }
 
 function openEditor(section, id = "") {
@@ -54,7 +55,7 @@ function openEditor(section, id = "") {
   const item = id ? dataCache[section]?.[id] || {} : { active: true, sortOrder: Object.keys(dataCache[section] || {}).length + 1 };
   const modal = document.createElement("div");
   modal.className = "modal";
-  modal.innerHTML = `<div class="modal-card"><button class="close-button" type="button" aria-label="Đóng">×</button><h2>${id ? "Sửa" : "Thêm"} ${definition.singular}</h2><form class="editor-form"><div class="form-grid">${definition.fields.map(field => fieldMarkup(field, item)).join("")}</div><div class="modal-actions"><button class="ghost-button cancel-button" type="button">Hủy</button><button class="primary-button" type="submit">Lưu</button></div></form></div>`;
+  modal.innerHTML = `<div class="modal-card"><button class="close-button" type="button" aria-label="Đóng">×</button><h2>${id ? "Sửa" : "Thêm"} ${definition.singular}</h2><form class="editor-form"><div class="form-grid">${definition.fields.map(field => fieldMarkup(field, item)).join("")}</div><p class="editor-error" role="alert"></p><div class="modal-actions"><button class="ghost-button cancel-button" type="button">Hủy</button><button class="primary-button save-button" type="submit">Lưu</button></div></form></div>`;
   document.body.append(modal);
   const close = () => modal.remove();
   modal.querySelector(".close-button").onclick = close;
@@ -70,15 +71,25 @@ function openEditor(section, id = "") {
       else payload[key] = String(formData.get(key) || "").trim();
     });
     const targetId = id || `item_${Date.now()}`;
+    const saveButton = modal.querySelector(".save-button");
+    const editorError = modal.querySelector(".editor-error");
+    saveButton.disabled = true;
+    saveButton.textContent = "Đang lưu...";
+    editorError.textContent = "";
     try {
       for (const key of ["imageUrl", "avatarUrl"]) {
         const file = formData.get(`${key}File`);
-        if (file instanceof File && file.size > 0) payload[key] = await uploadImage(file, section, targetId);
+        if (file instanceof File && file.size > 0) payload[key] = await readImageAsDataUrl(file);
       }
       await set(ref(realtimeDb, `${section}/${targetId}`), payload);
       close(); showToast("Đã lưu thay đổi");
     }
-    catch (error) { showToast(`Không thể lưu: ${error.message}`); }
+    catch (error) {
+      console.error("Admin save error:", error);
+      editorError.textContent = `Không thể lưu: ${error.code || error.message}`;
+      saveButton.disabled = false;
+      saveButton.textContent = "Lưu";
+    }
   };
 }
 
