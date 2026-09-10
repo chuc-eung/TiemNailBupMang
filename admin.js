@@ -17,10 +17,10 @@ const definitions = {
     ["description", "Mô tả", "textarea", true], ["price", "Giá (VNĐ)", "number", true], ["duration", "Thời lượng (phút)", "number", true], ["imageUrl", "URL hình ảnh", "url", false],
     ["featured", "Nổi bật", "checkbox", false], ["active", "Đang hiển thị", "checkbox", false], ["sortOrder", "Thứ tự", "number", false]
   ]},
-  combos: { title: "Combo", singular: "combo", fields: [
+  combos: { title: "Combo thư giãn", singular: "combo thư giãn", fields: [
     ["name", "Tên combo", "text", true], ["description", "Mô tả", "textarea", true], ["price", "Giá (VNĐ)", "number", true], ["duration", "Thời lượng (phút)", "number", true], ["imageUrl", "URL hình ảnh", "url", false], ["featured", "Nổi bật", "checkbox", false], ["active", "Đang hiển thị", "checkbox", false], ["sortOrder", "Thứ tự", "number", false]
   ]},
-  gallery: { title: "Gallery", singular: "ảnh", fields: [["title", "Tên ảnh", "text", true], ["category", "Danh mục", "text", true], ["imageUrl", "URL hình ảnh", "url", true], ["active", "Đang hiển thị", "checkbox", false], ["sortOrder", "Thứ tự", "number", false]]},
+  gallery: { title: "Bộ sưu tập & không gian", singular: "ảnh", fields: [["title", "Tên ảnh", "text", true], ["category", "Danh mục", "text", true], ["imageUrl", "URL hình ảnh", "url", true], ["active", "Đang hiển thị", "checkbox", false], ["sortOrder", "Thứ tự", "number", false]]},
   reviews: { title: "Reviews", singular: "review", fields: [["name", "Tên khách hàng", "text", true], ["rating", "Số sao", "number", true], ["content", "Nội dung", "textarea", true], ["avatarUrl", "URL avatar", "url", false], ["active", "Đang hiển thị", "checkbox", false], ["sortOrder", "Thứ tự", "number", false]]}
 };
 
@@ -109,6 +109,21 @@ function renderCollection(section) {
   contentSection.querySelectorAll(".delete-button").forEach(button => button.onclick = () => deleteItem(section, button.dataset.id));
 }
 
+function renderPricing() {
+  const groups = [
+    ["nail", "Nail"],
+    ["goi-dau", "Gội đầu"],
+    ["massage", "Massage"]
+  ];
+  const services = itemsFromValue(dataCache.services);
+  contentSection.innerHTML = `<div class="section-toolbar"><div><h2>Bảng giá</h2><p class="muted">Bảng giá được lấy từ các dịch vụ trong Firebase</p></div><button class="primary-button" id="addPriceButton">+ Thêm dịch vụ vào bảng giá</button></div>${groups.map(([category, title]) => {
+    const items = services.filter(item => item.category === category || (category === "goi-dau" && item.category === "headspa"));
+    return `<section class="price-admin-group"><h3>${title}</h3><div class="table-wrap">${items.length ? `<table class="data-table"><thead><tr><th>Dịch vụ</th><th>Giá</th><th>Thời lượng</th><th>Hiển thị</th><th>Thao tác</th></tr></thead><tbody>${items.map(item => `<tr><td>${escapeHtml(item.name)}</td><td>${formatPrice(item.price)}</td><td>${Number(item.duration || 0)} phút</td><td><span class="status ${item.active === false ? "cancelled" : "confirmed"}">${item.active === false ? "Ẩn" : "Hiện"}</span></td><td><div class="actions"><button class="ghost-button price-edit-button" data-id="${item.id}" type="button">Sửa giá</button></div></td></tr>`).join("")}</tbody></table>` : `<div class="empty">Chưa có dịch vụ.</div>`}</div></section>`;
+  }).join("")}`;
+  document.getElementById("addPriceButton").onclick = () => openEditor("services");
+  contentSection.querySelectorAll(".price-edit-button").forEach(button => button.onclick = () => openEditor("services", button.dataset.id));
+}
+
 function renderBookings() {
   const items = itemsFromValue(dataCache.bookings);
   contentSection.innerHTML = `<div class="section-toolbar"><div><h2>Booking</h2><p class="muted">${items.length} yêu cầu đặt lịch</p></div></div><div class="table-wrap">${items.length ? `<table class="data-table"><thead><tr><th>Khách hàng</th><th>Dịch vụ</th><th>Ngày giờ</th><th>Liên hệ</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${items.map(item => `<tr><td><strong>${escapeHtml(item.name)}</strong><br><small>${escapeHtml(item.note)}</small></td><td>${escapeHtml(item.service)}</td><td>${escapeHtml(item.date)}<br>${escapeHtml(item.time)}</td><td>${escapeHtml(item.phone)}</td><td><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status || "pending")}</span></td><td><div class="actions"><select class="booking-status" data-id="${item.id}"><option value="pending" ${item.status === "pending" ? "selected" : ""}>Chờ xử lý</option><option value="confirmed" ${item.status === "confirmed" ? "selected" : ""}>Đã xác nhận</option><option value="completed" ${item.status === "completed" ? "selected" : ""}>Hoàn thành</option><option value="cancelled" ${item.status === "cancelled" ? "selected" : ""}>Đã hủy</option></select><button class="danger-button delete-button" data-id="${item.id}" type="button">Xóa</button></div></td></tr>`).join("")}</tbody></table>` : `<div class="empty">Chưa có booking.</div>`}</div>`;
@@ -123,7 +138,7 @@ function renderSettings() {
   document.getElementById("settingsForm").onsubmit = async event => { event.preventDefault(); const payload = Object.fromEntries(new FormData(event.currentTarget).entries()); await set(ref(realtimeDb, "settings/salon"), payload); showToast("Đã lưu thông tin salon"); };
 }
 
-function renderActiveSection() { if (activeSection === "bookings") renderBookings(); else if (activeSection === "settings") renderSettings(); else renderCollection(activeSection); }
+function renderActiveSection() { if (activeSection === "pricing") renderPricing(); else if (activeSection === "bookings") renderBookings(); else if (activeSection === "settings") renderSettings(); else renderCollection(activeSection); }
 
 onAuthStateChanged(auth, user => { if (user) { loginPanel.classList.add("hidden"); dashboard.classList.remove("hidden"); document.getElementById("userLabel").textContent = user.email; renderActiveSection(); } else { loginPanel.classList.remove("hidden"); dashboard.classList.add("hidden"); } });
 
