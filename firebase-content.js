@@ -76,6 +76,7 @@ function renderCombos(items) {
   const grid = document.getElementById("comboGrid");
   if (!grid || !items.length) return;
   grid.innerHTML = items.map((item, index) => `<article class="combo-card reveal${item.featured ? " featured" : ""}">
+    <div class="combo-image image-placeholder">${imageMarkup(item.imageUrl, item.name, `ẢNH COMBO ${String(index + 1).padStart(2, "0")}`)}</div>
     <span class="combo-number">${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(item.name)}</h3>
     <p>${escapeHtml(item.description)}</p><strong>${formatPrice(item.price)}</strong>
     <button class="btn btn-light" type="button" data-open-booking>Đặt combo</button></article>`).join("");
