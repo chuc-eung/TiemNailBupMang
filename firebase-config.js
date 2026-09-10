@@ -5,7 +5,7 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-
 import { getDatabase } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqUOl4G2dt8Lc4FtEcn5y84Tje36LuKRM",
+  apiKey: "AIzaSyCqUOl4G2dt8Lc4FtEcn5y84Tje36LuM",
   authDomain: "nailbupmang.firebaseapp.com",
   projectId: "nailbupmang",
   databaseURL: "https://nailbupmang-default-rtdb.firebaseio.com",
