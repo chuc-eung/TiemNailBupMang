@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { ref, onValue, set, update, remove } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
-import { auth, realtimeDb } from "./firebase-config.js";
+import { getDownloadURL, ref as storageRef, uploadBytes } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+import { auth, realtimeDb, storage } from "./firebase-config.js";
 
 const loginPanel = document.getElementById("loginPanel");
 const dashboard = document.getElementById("dashboard");
@@ -34,7 +35,18 @@ function fieldMarkup(field, item = {}) {
   if (type === "checkbox") return `<label class="checkbox-label"><input type="checkbox" name="${key}" ${item[key] !== false ? "checked" : ""}> ${label}</label>`;
   if (type === "textarea") return `<label>${label}<textarea name="${key}" rows="3" ${required ? "required" : ""}>${escapeHtml(item[key] || "")}</textarea></label>`;
   if (type === "select") return `<label>${label}<select name="${key}" ${required ? "required" : ""}>${options.map(([value, text]) => `<option value="${value}" ${item[key] === value ? "selected" : ""}>${text}</option>`).join("")}</select></label>`;
+  if (type === "url" && (key === "imageUrl" || key === "avatarUrl")) return `<label>${label}<input type="url" name="${key}" value="${escapeHtml(item[key] ?? "")}"><span class="upload-label">Hoặc tải ảnh từ máy<input type="file" name="${key}File" accept="image/*"></span></label>`;
   return `<label>${label}<input type="${type}" name="${key}" value="${escapeHtml(item[key] ?? "")}" ${required ? "required" : ""}></label>`;
+}
+
+async function uploadImage(file, section, itemId) {
+  if (!file) return "";
+  if (!file.type.startsWith("image/")) throw new Error("Chỉ được tải file hình ảnh");
+  if (file.size > 5 * 1024 * 1024) throw new Error("Ảnh không được vượt quá 5MB");
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+  const imageRef = storageRef(storage, `images/${section}/${itemId}-${Date.now()}-${safeName}`);
+  const snapshot = await uploadBytes(imageRef, file);
+  return getDownloadURL(snapshot.ref);
 }
 
 function openEditor(section, id = "") {
@@ -58,7 +70,14 @@ function openEditor(section, id = "") {
       else payload[key] = String(formData.get(key) || "").trim();
     });
     const targetId = id || `item_${Date.now()}`;
-    try { await set(ref(realtimeDb, `${section}/${targetId}`), payload); close(); showToast("Đã lưu thay đổi"); }
+    try {
+      for (const key of ["imageUrl", "avatarUrl"]) {
+        const file = formData.get(`${key}File`);
+        if (file instanceof File && file.size > 0) payload[key] = await uploadImage(file, section, targetId);
+      }
+      await set(ref(realtimeDb, `${section}/${targetId}`), payload);
+      close(); showToast("Đã lưu thay đổi");
+    }
     catch (error) { showToast(`Không thể lưu: ${error.message}`); }
   };
 }
