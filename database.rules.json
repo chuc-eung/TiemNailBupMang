@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "services": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "combos": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "gallery": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "reviews": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "bookings": {
+      ".read": "auth != null",
+      ".write": "auth != null || (!data.exists() && newData.hasChildren([\"name\", \"phone\", \"service\", \"date\", \"time\", \"status\", \"createdAt\"] ))"
+    }
+  }
+}

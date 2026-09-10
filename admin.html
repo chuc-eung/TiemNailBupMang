@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Nail Studio</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-panel" id="loginPanel">
+      <p class="eyebrow">NAIL STUDIO ADMIN</p>
+      <h1>Đăng nhập quản trị</h1>
+      <p class="muted">Quản lý nội dung website và lịch đặt hẹn.</p>
+      <form id="loginForm" class="stack-form">
+        <label>Email<input type="email" id="email" required autocomplete="email"></label>
+        <label>Mật khẩu<input type="password" id="password" required autocomplete="current-password"></label>
+        <button class="primary-button" type="submit">Đăng nhập</button>
+        <p class="form-message" id="loginMessage" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="dashboard hidden" id="dashboard">
+      <header class="dashboard-header">
+        <div><p class="eyebrow">NAIL STUDIO ADMIN</p><h1>Trung tâm quản trị</h1><p class="muted" id="userLabel"></p></div>
+        <div class="header-actions"><a class="ghost-button" href="trangchu.html">Xem website</a><button class="ghost-button" id="logoutButton" type="button">Đăng xuất</button></div>
+      </header>
+
+      <nav class="tabs" aria-label="Khu vực quản trị">
+        <button class="tab active" data-section="services" type="button">Dịch vụ</button>
+        <button class="tab" data-section="combos" type="button">Combo</button>
+        <button class="tab" data-section="gallery" type="button">Gallery</button>
+        <button class="tab" data-section="reviews" type="button">Reviews</button>
+        <button class="tab" data-section="bookings" type="button">Booking</button>
+        <button class="tab" data-section="settings" type="button">Thông tin salon</button>
+      </nav>
+
+      <section class="content-section" id="contentSection"></section>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
