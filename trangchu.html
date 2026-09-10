@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nail & Beauty Spa - Khung sườn website cho dịch vụ Nail, Gội đầu dưỡng sinh và Massage.">
+  <title>Nail Studio | Nail & Beauty Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trangchu.css">
+</head>
+<body>
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>✦ Khung sườn website Nail & Beauty Spa</span>
+      <span>Thay nội dung mẫu bằng thông tin thật khi hoàn thiện</span>
+    </div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="header">
+    <div class="container header-row">
+      <a class="logo" href="#home" aria-label="Trang chủ Nail Studio">
+        <span class="logo-main">Nail</span>
+        <span class="logo-sub">Studio</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Điều hướng chính">
+        <a href="#home">Trang chủ</a>
+        <a href="#services">Dịch vụ</a>
+        <a href="#pricing">Bảng giá</a>
+        <a href="#gallery">Bộ sưu tập</a>
+        <a href="#about">Về chúng tôi</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" id="searchBtn" aria-label="Tìm kiếm">⌕</button>
+        <button class="btn btn-primary" type="button" data-open-booking>Đặt lịch</button>
+        <button class="hamburger" type="button" id="menuBtn" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+      <div class="mobile-panel-inner">
+        <button class="mobile-close" type="button" id="closeMenu" aria-label="Đóng menu">×</button>
+        <p class="mobile-title">Nail & Beauty Spa</p>
+        <nav class="mobile-nav" aria-label="Điều hướng mobile">
+          <a href="#home">Trang chủ</a>
+          <a href="#services">Dịch vụ</a>
+          <a href="#pricing">Bảng giá</a>
+          <a href="#gallery">Bộ sưu tập</a>
+          <a href="#about">Về chúng tôi</a>
+          <a href="#reviews">Khách hàng</a>
+          <a href="#contact">Liên hệ</a>
+          <button class="btn btn-primary mobile-booking" type="button" data-open-booking>Đặt lịch ngay</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero section" id="home">
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">NAIL • HEAD SPA • MASSAGE</span>
+          <h1>Đẹp từ đôi tay,<br><em>thư giãn từ tâm hồn.</em></h1>
+          <p class="hero-desc">Không gian làm đẹp và thư giãn dành cho bạn — từ chăm sóc móng, gội đầu dưỡng sinh đến massage toàn thân.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-open-booking>Đặt lịch ngay</button>
+            <a class="btn btn-secondary" href="#services">Xem dịch vụ</a>
+          </div>
+          <div class="hero-trust">
+            <div><strong>500+</strong><span>Khách hàng</span></div>
+            <div><strong>10+</strong><span>Năm kinh nghiệm</span></div>
+            <div><strong>50+</strong><span>Mẫu dịch vụ</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-image-card image-placeholder">
+            <img src="images/hero-image.jpg" alt="Hình ảnh không gian Nail Studio" onerror="this.style.display='none'">
+            <div class="image-fallback"><span>ẢNH HERO</span><small>Thay bằng ảnh salon nổi bật</small></div>
+          </div>
+          <div class="floating-card">
+            <span class="floating-icon">✦</span>
+            <div><strong>Beauty & Relax</strong><small>Chăm sóc trọn vẹn</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICE INTRO ===== -->
+    <section class="service-intro section-sm">
+      <div class="container three-points">
+        <div class="point-card"><span>01</span><h3>Nail Care</h3><p>Chăm sóc và làm đẹp móng tay, móng chân.</p></div>
+        <div class="point-card"><span>02</span><h3>Head Spa</h3><p>Gội đầu thư giãn và liệu trình dưỡng sinh.</p></div>
+        <div class="point-card"><span>03</span><h3>Massage</h3><p>Thư giãn cơ thể với nhiều liệu trình massage.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section section-soft" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">SERVICES</span>
+          <h2>Dịch vụ nổi bật</h2>
+          <p>Khung nội dung mẫu — sau này bạn chỉ cần thay tên, mô tả, ảnh và giá.</p>
+        </div>
+
+        <div class="category-tabs" role="tablist" aria-label="Nhóm dịch vụ">
+          <button class="category-tab active" type="button" data-filter="all">Tất cả</button>
+          <button class="category-tab" type="button" data-filter="nail">Nail</button>
+          <button class="category-tab" type="button" data-filter="headspa">Gội đầu</button>
+          <button class="category-tab" type="button" data-filter="massage">Massage</button>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal" data-category="nail">
+            <div class="card-image image-placeholder"><img src="images/service1.jpg" alt="Nail" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH NAIL</span></div><span class="card-badge">NAIL</span></div>
+            <div class="card-body"><div class="card-meta"><span>01</span><span>Từ 000.000đ</span></div><h3>Sơn & chăm sóc móng</h3><p>Mô tả ngắn về dịch vụ sẽ được cập nhật tại đây.</p><a href="#booking" class="text-link">Xem chi tiết →</a></div>
+          </article>
+
+          <article class="service-card reveal" data-category="nail">
+            <div class="card-image image-placeholder"><img src="images/service2.jpg" alt="Nail Art" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH NAIL ART</span></div><span class="card-badge">NAIL</span></div>
+            <div class="card-body"><div class="card-meta"><span>02</span><span>Từ 000.000đ</span></div><h3>Nail Art & thiết kế</h3><p>Khung mô tả dành cho mẫu nail, phong cách và kỹ thuật nổi bật.</p><a href="#gallery" class="text-link">Xem mẫu →</a></div>
+          </article>
+
+          <article class="service-card reveal" data-category="headspa">
+            <div class="card-image image-placeholder"><img src="images/service3.jpg" alt="Gội đầu dưỡng sinh" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH HEAD SPA</span></div><span class="card-badge">HEAD SPA</span></div>
+            <div class="card-body"><div class="card-meta"><span>03</span><span>Từ 000.000đ</span></div><h3>Gội đầu dưỡng sinh</h3><p>Không gian thư giãn cùng liệu trình gội và chăm sóc da đầu.</p><a href="#booking" class="text-link">Đặt dịch vụ →</a></div>
+          </article>
+
+          <article class="service-card reveal" data-category="headspa">
+            <div class="card-image image-placeholder"><div class="image-fallback"><span>ẢNH GỘI ĐẦU</span></div><span class="card-badge">HEAD SPA</span></div>
+            <div class="card-body"><div class="card-meta"><span>04</span><span>Từ 000.000đ</span></div><h3>Gội thư giãn</h3><p>Khung nội dung cho thời lượng, quy trình và lợi ích của dịch vụ.</p><a href="#booking" class="text-link">Đặt dịch vụ →</a></div>
+          </article>
+
+          <article class="service-card reveal" data-category="massage">
+            <div class="card-image image-placeholder"><div class="image-fallback"><span>ẢNH MASSAGE</span></div><span class="card-badge">MASSAGE</span></div>
+            <div class="card-body"><div class="card-meta"><span>05</span><span>Từ 000.000đ</span></div><h3>Massage cổ vai gáy</h3><p>Khu vực để mô tả ngắn về liệu trình và thời gian thực hiện.</p><a href="#booking" class="text-link">Đặt dịch vụ →</a></div>
+          </article>
+
+          <article class="service-card reveal" data-category="massage">
+            <div class="card-image image-placeholder"><div class="image-fallback"><span>ẢNH BODY MASSAGE</span></div><span class="card-badge">MASSAGE</span></div>
+            <div class="card-body"><div class="card-meta"><span>06</span><span>Từ 000.000đ</span></div><h3>Massage thư giãn body</h3><p>Khung mô tả dành cho liệu trình massage cơ thể.</p><a href="#booking" class="text-link">Đặt dịch vụ →</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">PRICE LIST</span><h2>Bảng giá</h2><p>Để sẵn cấu trúc cho bạn cập nhật bảng giá chính thức sau này.</p></div>
+        <div class="pricing-grid">
+          <article class="price-box reveal"><div class="price-head"><span>01</span><h3>Nail</h3></div><ul><li><span>Dịch vụ mẫu 01</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 02</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 03</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 04</span><strong>000.000đ</strong></li></ul></article>
+          <article class="price-box featured reveal"><div class="price-head"><span>02</span><h3>Gội đầu</h3></div><ul><li><span>Dịch vụ mẫu 01</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 02</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 03</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 04</span><strong>000.000đ</strong></li></ul></article>
+          <article class="price-box reveal"><div class="price-head"><span>03</span><h3>Massage</h3></div><ul><li><span>Dịch vụ mẫu 01</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 02</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 03</span><strong>000.000đ</strong></li><li><span>Dịch vụ mẫu 04</span><strong>000.000đ</strong></li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMBO ===== -->
+    <section class="section section-dark" id="combo">
+      <div class="container">
+        <div class="section-heading section-heading-light reveal"><span class="eyebrow">COMBO</span><h2>Combo thư giãn & làm đẹp</h2><p>Khung 3–4 combo để cập nhật chương trình bán hàng / ưu đãi.</p></div>
+        <div class="combo-grid">
+          <article class="combo-card reveal"><span class="combo-number">01</span><h3>Beauty</h3><p>Placeholder cho combo nail nổi bật.</p><strong>000.000đ</strong><button class="btn btn-light" type="button" data-open-booking>Đặt combo</button></article>
+          <article class="combo-card featured reveal"><span class="combo-number">02</span><h3>Relax</h3><p>Placeholder cho combo gội đầu & massage.</p><strong>000.000đ</strong><button class="btn btn-light" type="button" data-open-booking>Đặt combo</button></article>
+          <article class="combo-card reveal"><span class="combo-number">03</span><h3>Full Care</h3><p>Placeholder cho combo chăm sóc toàn diện.</p><strong>000.000đ</strong><button class="btn btn-light" type="button" data-open-booking>Đặt combo</button></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">GALLERY</span><h2>Bộ sưu tập & không gian</h2><p>Khu vực ảnh mẫu cho thành phẩm nail và không gian salon.</p></div>
+        <div class="gallery-grid">
+          <div class="gallery-item large image-placeholder"><img src="images/recipe1.jpg" alt="Mẫu nail 1" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH NAIL 01</span><small>Thay ảnh thực tế</small></div></div>
+          <div class="gallery-item image-placeholder"><img src="images/recipe2.jpg" alt="Mẫu nail 2" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH NAIL 02</span></div></div>
+          <div class="gallery-item image-placeholder"><img src="images/recipe3.jpg" alt="Mẫu nail 3" onerror="this.style.display='none'"><div class="image-fallback"><span>ẢNH NAIL 03</span></div></div>
+          <div class="gallery-item image-placeholder"><div class="image-fallback"><span>ẢNH KHÔNG GIAN</span></div></div>
+          <div class="gallery-item image-placeholder"><div class="image-fallback"><span>ẢNH GỘI ĐẦU</span></div></div>
+          <div class="gallery-item image-placeholder"><div class="image-fallback"><span>ẢNH MASSAGE</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section section-soft" id="about">
+      <div class="container about-grid">
+        <div class="about-image image-placeholder reveal"><div class="image-fallback"><span>ẢNH SALON</span><small>Ảnh giới thiệu không gian / đội ngũ</small></div></div>
+        <div class="about-copy reveal"><span class="eyebrow">ABOUT US</span><h2>Không chỉ làm đẹp, mà còn là một khoảng thời gian dành cho bạn.</h2><p>Đây là phần giới thiệu thương hiệu. Bạn có thể thay bằng câu chuyện salon, phong cách phục vụ, sứ mệnh và giá trị khác biệt.</p><div class="feature-list"><div><strong>01</strong><span>Đội ngũ chuyên nghiệp</span></div><div><strong>02</strong><span>Không gian sạch đẹp</span></div><div><strong>03</strong><span>Sản phẩm chất lượng</span></div><div><strong>04</strong><span>Phục vụ tận tâm</span></div></div></div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">REVIEWS</span><h2>Khách hàng nói gì?</h2><p>Khung review để thêm đánh giá thật sau khi website hoàn thiện.</p></div>
+        <div class="review-grid">
+          <article class="review-card reveal"><div class="stars">★★★★★</div><p>“Nội dung đánh giá khách hàng sẽ được cập nhật tại đây.”</p><div class="review-author"><span class="avatar">A</span><div><strong>Khách hàng 01</strong><small>Khách hàng thân thiết</small></div></div></article>
+          <article class="review-card reveal"><div class="stars">★★★★★</div><p>“Khu vực này dành cho feedback về trải nghiệm nail, gội đầu hoặc massage.”</p><div class="review-author"><span class="avatar">B</span><div><strong>Khách hàng 02</strong><small>Khách hàng thân thiết</small></div></div></article>
+          <article class="review-card reveal"><div class="stars">★★★★★</div><p>“Có thể thay nội dung này bằng review thật từ Facebook, Google hoặc khách trực tiếp.”</p><div class="review-author"><span class="avatar">C</span><div><strong>Khách hàng 03</strong><small>Khách hàng thân thiết</small></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BOOKING ===== -->
+    <section class="section booking-section" id="booking">
+      <div class="container booking-grid">
+        <div class="booking-copy reveal"><span class="eyebrow">BOOKING</span><h2>Đặt lịch trải nghiệm</h2><p>Khung form để kết nối với email, Google Sheets, backend hoặc hệ thống booking sau này.</p><div class="booking-points"><span>✓ Chọn dịch vụ</span><span>✓ Chọn ngày & giờ</span><span>✓ Xác nhận thông tin</span></div></div>
+        <form class="booking-form reveal" id="bookingForm">
+          <div class="form-grid"><label>Họ và tên<input type="text" name="name" placeholder="Nhập họ và tên" required></label><label>Số điện thoại<input type="tel" name="phone" placeholder="Nhập số điện thoại" required></label></div>
+          <div class="form-grid"><label>Dịch vụ<select name="service" required><option value="">Chọn dịch vụ</option><option>Nail</option><option>Gội đầu</option><option>Massage</option><option>Combo</option></select></label><label>Ngày<input type="date" name="date" required></label></div>
+          <label>Khung giờ<select name="time" required><option value="">Chọn khung giờ</option><option>09:00 – 11:00</option><option>11:00 – 13:00</option><option>13:00 – 15:00</option><option>15:00 – 17:00</option><option>17:00 – 19:00</option><option>19:00 – 21:00</option></select></label>
+          <label>Ghi chú<textarea name="note" rows="4" placeholder="Ví dụ: mẫu nail, yêu cầu đặc biệt..."></textarea></label>
+          <button class="btn btn-primary btn-full" type="submit">Gửi yêu cầu đặt lịch</button>
+          <p class="form-note">* Chưa kết nối hệ thống thật. Đây là form mẫu cho phần frontend.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section-soft" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal"><span class="eyebrow">CONTACT</span><h2>Liên hệ với chúng tôi</h2><p>Thay các thông tin mẫu dưới đây bằng thông tin thật của salon.</p><div class="contact-list"><div><span class="contact-icon">⌖</span><div><strong>Địa chỉ</strong><p>123 Đường ABC, Quận ..., TP. ...</p></div></div><div><span class="contact-icon">☎</span><div><strong>Điện thoại</strong><p>09xx xxx xxx</p></div></div><div><span class="contact-icon">◷</span><div><strong>Giờ mở cửa</strong><p>08:00 – 21:00 • Thứ 2 – Chủ nhật</p></div></div><div><span class="contact-icon">◎</span><div><strong>Mạng xã hội</strong><p>Facebook • Instagram • Zalo</p></div></div></div></div>
+        <div class="map-placeholder reveal"><div><span class="map-icon">⌖</span><h3>Google Maps</h3><p>Đặt iframe Google Maps thật vào vị trí này.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a class="logo" href="#home"><span class="logo-main">Nail</span><span class="logo-sub">Studio</span></a><p>Nail • Gội đầu dưỡng sinh • Massage</p></div>
+      <div><h4>Dịch vụ</h4><a href="#services">Nail</a><a href="#services">Gội đầu</a><a href="#services">Massage</a><a href="#combo">Combo</a></div>
+      <div><h4>Thông tin</h4><a href="#about">Về chúng tôi</a><a href="#pricing">Bảng giá</a><a href="#gallery">Bộ sưu tập</a><a href="#reviews">Khách hàng</a></div>
+      <div><h4>Liên hệ</h4><a href="#contact">Địa chỉ</a><a href="#contact">Điện thoại</a><a href="#contact">Facebook / Zalo</a><a href="#booking">Đặt lịch</a></div>
+    </div>
+    <div class="footer-bottom"><div class="container"><span>© 2026 Nail Studio. All Rights Reserved.</span><span>Website template</span></div></div>
+  </footer>
+
+  <!-- ===== SEARCH ===== -->
+  <div class="search-modal" id="searchModal" aria-hidden="true"><div class="search-box"><button class="modal-close" type="button" data-close-search>×</button><span class="eyebrow">SEARCH</span><h3>Tìm nội dung</h3><input id="searchInput" type="search" placeholder="Tìm dịch vụ, bảng giá..."><p>Chức năng tìm kiếm có thể kết nối dữ liệu thật ở bước sau.</p></div></div>
+
+  <!-- ===== BOOKING MODAL ===== -->
+  <div class="booking-modal" id="bookingModal" aria-hidden="true"><div class="booking-modal-box"><button class="modal-close" type="button" data-close-booking>×</button><span class="eyebrow">BOOKING</span><h3>Đặt lịch nhanh</h3><p>Điền thông tin cơ bản, sau đó bạn có thể kết nối form này với backend.</p><button class="btn btn-primary btn-full" type="button" id="scrollToBooking">Mở form đặt lịch</button></div></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="trangchu_final.js"></script>
+  <script type="module" src="firebase-config.js"></script>
+</body>
+</html>

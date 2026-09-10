@@ -1,0 +1,163 @@
+{
+  "services": {
+    "service_001": {
+      "name": "Sơn gel",
+      "category": "nail",
+      "description": "Dịch vụ sơn gel với nhiều màu sắc và kiểu dáng.",
+      "price": 99000,
+      "duration": 60,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 1
+    },
+    "service_002": {
+      "name": "Chăm sóc móng tay",
+      "category": "nail",
+      "description": "Cắt da, tạo form và chăm sóc móng.",
+      "price": 79000,
+      "duration": 45,
+      "imageUrl": "",
+      "featured": false,
+      "active": true,
+      "sortOrder": 2
+    },
+    "service_003": {
+      "name": "Gội đầu thư giãn",
+      "category": "goi-dau",
+      "description": "Gội đầu kết hợp massage da đầu thư giãn.",
+      "price": 99000,
+      "duration": 30,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 3
+    },
+    "service_004": {
+      "name": "Gội đầu dưỡng sinh",
+      "category": "goi-dau",
+      "description": "Liệu trình gội đầu dưỡng sinh giúp thư giãn và chăm sóc da đầu.",
+      "price": 159000,
+      "duration": 60,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 4
+    },
+    "service_005": {
+      "name": "Massage cổ vai gáy",
+      "category": "massage",
+      "description": "Massage thư giãn vùng cổ, vai và gáy.",
+      "price": 129000,
+      "duration": 45,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 5
+    },
+    "service_006": {
+      "name": "Massage body",
+      "category": "massage",
+      "description": "Massage toàn thân thư giãn.",
+      "price": 299000,
+      "duration": 90,
+      "imageUrl": "",
+      "featured": false,
+      "active": true,
+      "sortOrder": 6
+    }
+  },
+
+  "combos": {
+    "combo_001": {
+      "name": "Combo Relax",
+      "description": "Gội đầu thư giãn + massage đầu.",
+      "price": 159000,
+      "duration": 60,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 1
+    },
+    "combo_002": {
+      "name": "Combo Beauty",
+      "description": "Chăm sóc móng + sơn gel.",
+      "price": 199000,
+      "duration": 90,
+      "imageUrl": "",
+      "featured": true,
+      "active": true,
+      "sortOrder": 2
+    }
+  },
+
+  "gallery": {
+    "gallery_001": {
+      "title": "Không gian salon",
+      "category": "salon",
+      "imageUrl": "",
+      "active": true,
+      "sortOrder": 1
+    },
+    "gallery_002": {
+      "title": "Nail mẫu",
+      "category": "nail",
+      "imageUrl": "",
+      "active": true,
+      "sortOrder": 2
+    },
+    "gallery_003": {
+      "title": "Khu gội đầu",
+      "category": "goi-dau",
+      "imageUrl": "",
+      "active": true,
+      "sortOrder": 3
+    },
+    "gallery_004": {
+      "title": "Khu massage",
+      "category": "massage",
+      "imageUrl": "",
+      "active": true,
+      "sortOrder": 4
+    }
+  },
+
+  "reviews": {
+    "review_001": {
+      "name": "Khách hàng",
+      "rating": 5,
+      "content": "Dịch vụ rất tốt, nhân viên thân thiện.",
+      "avatarUrl": "",
+      "active": true,
+      "sortOrder": 1
+    },
+    "review_002": {
+      "name": "Khách hàng",
+      "rating": 5,
+      "content": "Không gian đẹp và rất thư giãn.",
+      "avatarUrl": "",
+      "active": true,
+      "sortOrder": 2
+    }
+  },
+
+  "bookings": {
+  },
+
+  "settings": {
+    "salon": {
+      "name": "Tên Salon",
+      "logoUrl": "",
+      "phone": "09xxxxxxxx",
+      "email": "",
+      "address": "Địa chỉ salon",
+      "openingTime": "08:00",
+      "closingTime": "21:00",
+      "facebook": "",
+      "zalo": "",
+      "instagram": "",
+      "mapUrl": "",
+      "description": "Nail • Gội đầu dưỡng sinh • Massage"
+    }
+  }
+}
